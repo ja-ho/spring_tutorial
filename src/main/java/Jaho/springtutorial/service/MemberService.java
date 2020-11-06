@@ -29,10 +29,18 @@ public class MemberService {
 //        result.ifPresent(m -> {
 //            throw new IllegalStateException("이미 존재하는 회원입니다.");
 //        });
-        validateDuplicateMember(member);
+        long start = System.currentTimeMillis();
+        try {
+            validateDuplicateMember(member);
 
-        memberRepository.save(member);
-        return member.getId();
+            memberRepository.save(member);
+            return member.getId();
+        } finally {         //exception이 나더라도 finally는 무조건 들어오니까
+            long finish = System.currentTimeMillis();
+            long timeMS = finish - start;
+            System.out.println("join = " + timeMS + "ms");
+        }
+
     }
 
     private void validateDuplicateMember(Member member) {
