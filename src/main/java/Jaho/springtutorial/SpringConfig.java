@@ -1,17 +1,18 @@
 package Jaho.springtutorial;
 
-import Jaho.springtutorial.repository.JdbcTemplateMemberRepository;
+import Jaho.springtutorial.repository.JPAMemberRepository;
 import Jaho.springtutorial.repository.MemberRepository;
 import Jaho.springtutorial.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.sql.DataSource;
+import javax.persistence.EntityManager;
 
 @Configuration
 public class SpringConfig {
 
+/*  for jdbcTemplate
     private final DataSource dataSource;
 
     //DataSource는 데이터베이스 커넥션을 획득할 때 사용하는 객체다. 스프링 부트는 데이터베이스 커넥션 정
@@ -19,6 +20,13 @@ public class SpringConfig {
     @Autowired
     public SpringConfig(DataSource dataSource) {
         this.dataSource = dataSource;
+    }*/
+
+    private EntityManager em;
+
+    @Autowired
+    public SpringConfig(EntityManager em) {
+        this.em = em;
     }
 
     @Bean
@@ -30,6 +38,7 @@ public class SpringConfig {
     public MemberRepository memberRepository() {
 //        return new MemoryMemberRepository();
 //        return new JdbcMemberRepository(dataSource);
-        return new JdbcTemplateMemberRepository(dataSource);
+//        return new JdbcTemplateMemberRepository(dataSource);
+        return new JPAMemberRepository(em);
     }
 }

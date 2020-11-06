@@ -2,14 +2,14 @@ package Jaho.springtutorial.service;
 
 import Jaho.springtutorial.domain.Member;
 import Jaho.springtutorial.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 
 //@Service
+@Transactional  //for JPA 데이터 변경 및 업데이트
 public class MemberService {
 
     private final MemberRepository memberRepository;
