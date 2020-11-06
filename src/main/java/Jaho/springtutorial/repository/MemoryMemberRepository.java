@@ -1,11 +1,10 @@
 package Jaho.springtutorial.repository;
 
 import Jaho.springtutorial.domain.Member;
-import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-@Repository
+//@Repository for JpaRepository
 public class MemoryMemberRepository implements MemberRepository {
 
     private static Map<Long, Member> store = new HashMap<>();
