@@ -1,6 +1,6 @@
 package Jaho.springtutorial;
 
-import Jaho.springtutorial.repository.JdbcMemberRepository;
+import Jaho.springtutorial.repository.JdbcTemplateMemberRepository;
 import Jaho.springtutorial.repository.MemberRepository;
 import Jaho.springtutorial.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +29,7 @@ public class SpringConfig {
     @Bean
     public MemberRepository memberRepository() {
 //        return new MemoryMemberRepository();
-        return new JdbcMemberRepository(dataSource);
+//        return new JdbcMemberRepository(dataSource);
+        return new JdbcTemplateMemberRepository(dataSource);
     }
 }
